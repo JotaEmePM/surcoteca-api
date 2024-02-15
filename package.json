@@ -8,7 +8,8 @@
     "debug": "set DEBUG=* && pnpm start",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "add-build": "git add dist",
+    "precommit": "echo 'Pre-Commmit checks' && exit 0"
   },
   "keywords": [],
   "author": "",
@@ -47,6 +48,8 @@
     "vercel": "^33.5.1"
   },
   "pre-commit": [    
+    "precommit",
+    "ts.check",
     "build",
     "add-build"
   ]
