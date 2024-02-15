@@ -1,0 +1,4 @@
+pnpm precommit
+pnpm ts.check
+pnpm build
+pnpm add-build
