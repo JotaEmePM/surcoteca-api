@@ -20,9 +20,7 @@ const port = 3001
 const routes: Array<CommonRoutesConfig> = []
 const debugLog: debug.IDebugger = debug('app')
 
-const dotenvResult = dotenv.config({
-    path: '.env'
-});
+const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
     throw dotenvResult.error;
 }
