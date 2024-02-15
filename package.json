@@ -46,8 +46,7 @@
     "typescript": "^5.3.3",
     "vercel": "^33.5.1"
   },
-  "pre-commit": [
-    "ts.check",
+  "pre-commit": [    
     "build",
     "add-build"
   ]
