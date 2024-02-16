@@ -12,22 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const debug_1 = __importDefault(require("debug"));
-const album_service_1 = __importDefault(require("../services/album.service"));
-const log = (0, debug_1.default)('app:albums-controller');
-class AlbumController {
-    listAlbums(req, res) {
+const albums_dao_1 = __importDefault(require("../daos/albums.dao"));
+class AlbumService {
+    list(limit, page) {
         return __awaiter(this, void 0, void 0, function* () {
-            const albums = yield album_service_1.default.list(100, 0);
-            res.status(200).send(albums);
+            return albums_dao_1.default.getAlbums(limit, page);
         });
     }
-    createAlbum(req, res) {
+    create(resource) {
         return __awaiter(this, void 0, void 0, function* () {
-            const albumId = yield album_service_1.default.create(req.body);
-            res.status(201).send({ id: albumId });
+            return albums_dao_1.default.addAlbum(resource);
+        });
+    }
+    putById(id, resource) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return albums_dao_1.default.updateAlbumById(id, resource);
+        });
+    }
+    readById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return albums_dao_1.default.getAlbumById(id);
+        });
+    }
+    deleteById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return albums_dao_1.default.removeAlbumById(id);
+        });
+    }
+    patchById(id, resource) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return albums_dao_1.default.updateAlbumById(id, resource);
         });
     }
 }
-exports.default = new AlbumController();
-//# sourceMappingURL=albums.controller.js.map
+exports.default = new AlbumService();
+//# sourceMappingURL=album.service.js.map

@@ -44,6 +44,7 @@ const users_routes_config_1 = require("./users/users.routes.config");
 const debug_1 = __importDefault(require("debug"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const helmet_1 = __importDefault(require("helmet"));
+const albums_routes_config_1 = require("./albums/albums.routes.config");
 const artist_routes_config_1 = require("./artist/artist.routes.config");
 const auth_routes_config_1 = require("./auth/auth.routes.config");
 const app = (0, express_1.default)();
@@ -71,6 +72,7 @@ routes.push(new users_routes_config_1.UsersRoutes(app));
 routes.push(new auth_routes_config_1.AuthRoutes(app));
 // Surcoteca-API
 routes.push(new artist_routes_config_1.ArtistRoutes(app));
+routes.push(new albums_routes_config_1.AlbumRoutes(app));
 // End Routes
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

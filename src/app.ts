@@ -11,6 +11,7 @@ import { UsersRoutes } from './users/users.routes.config'
 import debug from 'debug'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
+import { AlbumRoutes } from './albums/albums.routes.config'
 import { ArtistRoutes } from './artist/artist.routes.config'
 import { AuthRoutes } from './auth/auth.routes.config'
 
@@ -50,6 +51,7 @@ routes.push(new AuthRoutes(app));
 
 // Surcoteca-API
 routes.push(new ArtistRoutes(app))
+routes.push(new AlbumRoutes(app))
 
 // End Routes
 
