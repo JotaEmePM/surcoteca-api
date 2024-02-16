@@ -17,12 +17,12 @@ class UsersMiddleware {
             });
         }
     }
-    
+
     async validateSameEmailDoesntExist(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
-    ) {        
+    ) {
         const user = await userService.getUserByEmail(req.body.email);
         if (user) {
             res.status(400).send({ error: `User email already exists` });
@@ -30,7 +30,7 @@ class UsersMiddleware {
             next();
         }
     }
-    
+
     async validateSameEmailBelongToSameUser(
         req: express.Request,
         res: express.Response,
@@ -42,7 +42,7 @@ class UsersMiddleware {
             res.status(400).send({ error: `Invalid email` });
         }
     }
-    
+
     // Here we need to use an arrow function to bind `this` correctly
     validatePatchEmail = async (
         req: express.Request,
@@ -51,13 +51,13 @@ class UsersMiddleware {
     ) => {
         if (req.body.email) {
             log('Validating email', req.body.email);
-    
+
             this.validateSameEmailBelongToSameUser(req, res, next);
         } else {
             next();
         }
     };
-    
+
     async validateUserExists(
         req: express.Request,
         res: express.Response,
@@ -99,6 +99,16 @@ class UsersMiddleware {
             next();
         }
     }
+
+    async sendWelcomeEmail(
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+    ) {
+        log('Sending welcome email to:', req.body.email);
+        next();
+    }
+
 }
 
 export default new UsersMiddleware();

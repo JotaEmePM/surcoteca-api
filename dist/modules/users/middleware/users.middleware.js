@@ -94,6 +94,12 @@ class UsersMiddleware {
             }
         });
     }
+    sendWelcomeEmail(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            log('Sending welcome email to:', req.body.email);
+            next();
+        });
+    }
 }
 exports.default = new UsersMiddleware();
 //# sourceMappingURL=users.middleware.js.map

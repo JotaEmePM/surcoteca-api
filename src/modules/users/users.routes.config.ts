@@ -29,10 +29,11 @@ export class UsersRoutes extends CommonRoutesConfig {
                 body('email').isEmail(),
                 body('password')
                     .isLength({ min: 5 })
-                        .withMessage('Must include password (5+ characters)'),       
-                BodyValidationMiddleware.verifyBodyFieldsErrors,         
+                    .withMessage('Must include password (5+ characters)'),
+                BodyValidationMiddleware.verifyBodyFieldsErrors,
                 UsersMiddleware.validateSameEmailDoesntExist,
-                UsersController.createUser
+                UsersController.createUser,
+                UsersMiddleware.sendWelcomeEmail
             );
 
         this.app.param(`userId`, UsersMiddleware.extractUserId);

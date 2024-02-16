@@ -22,7 +22,7 @@ class UsersRoutes extends common_routes_config_1.CommonRoutesConfig {
             .get(jwt_middleware_1.default.validJWTNeeded, common_permission_middleware_1.default.permissionFlagRequired(common_permissionflag_enum_1.PermissionFlag.ADMIN_PERMISSION), users_controller_1.default.listUsers)
             .post((0, express_validator_1.body)('email').isEmail(), (0, express_validator_1.body)('password')
             .isLength({ min: 5 })
-            .withMessage('Must include password (5+ characters)'), body_validation_middleware_1.default.verifyBodyFieldsErrors, users_middleware_1.default.validateSameEmailDoesntExist, users_controller_1.default.createUser);
+            .withMessage('Must include password (5+ characters)'), body_validation_middleware_1.default.verifyBodyFieldsErrors, users_middleware_1.default.validateSameEmailDoesntExist, users_controller_1.default.createUser, users_middleware_1.default.sendWelcomeEmail);
         this.app.param(`userId`, users_middleware_1.default.extractUserId);
         this.app
             .route(`/users/:userId`)
