@@ -56,7 +56,7 @@ app.use(helmet())
 
 const runningMessage = `Server running at http://localhost:${port}`
 app.get('/', async (req: express.Request, res: express.Response) => {
-    const template = await emailTemplateService.getTemplate('welcome.html')
+    const template = await emailTemplateService.getTemplate('welcome')
     const responseResend = resendService.sendEmail({
         to: 'perezmjosem@gmail.com',
         subject: 'Bienvenido a Surcoteca',

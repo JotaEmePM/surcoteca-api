@@ -16,7 +16,7 @@ class EmailTemplateService {
     }
 
     public async getTemplate(templateName: string) {
-        const response = await axios.get(`${this.email_template_url}/${templateName}`)
+        const response = await axios.get(`${this.email_template_url}${templateName}`)
         return response.data
     }
 }

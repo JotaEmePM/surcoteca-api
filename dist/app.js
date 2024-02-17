@@ -74,7 +74,7 @@ app.use((0, helmet_1.default)());
 // End Routes
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const template = yield email_template_service_1.default.getTemplate('welcome.html');
+    const template = yield email_template_service_1.default.getTemplate('welcome');
     const responseResend = resend_service_1.default.sendEmail({
         to: 'perezmjosem@gmail.com',
         subject: 'Bienvenido a Surcoteca',
