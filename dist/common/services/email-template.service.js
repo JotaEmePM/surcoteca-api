@@ -12,27 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const axios_1 = __importDefault(require("axios"));
 const debug_1 = __importDefault(require("debug"));
-const resend_1 = require("resend");
-const log = (0, debug_1.default)('app:resend-service');
-class ResendService {
+const log = (0, debug_1.default)('app:email-template-service');
+class EmailTemplateService {
     constructor() {
-        this.resend_api_key = '';
-        this.dotenv = require('dotenv');
-        this.dotenv.config();
-        if (!process.env.RESEND_API_KEY) {
-            log('RESEND_API_KEY is not set in .env file');
-            throw new Error('RESEND_API_KEY is not set in .env file');
-        }
-        this.resend_api_key = process.env.RESEND_API_KEY;
+        this.email_template_url = '';
+        // if (!process.env.EMAIL_TEMPLATE_URL) {
+        //     log('EMAIL_TEMPLATE_URL is not set in .env file')
+        //     throw new Error('EMAIL_TEMPLATE_URL is not set in .env file')
+        // }
+        // this.email_template_url = process.env.EMAIL_TEMPLATE_URL;
+        this.email_template_url = 'https://surcoteca-1vkbcdmyc-jotaemepms-projects.vercel.app/emails/';
     }
-    sendEmail(resendData) {
+    getTemplate(templateName) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resend = new resend_1.Resend(this.resend_api_key);
-            const response = yield resend.emails.send(Object.assign({}, resendData));
-            return response;
+            const response = yield axios_1.default.get(`${this.email_template_url}/${templateName}`);
+            return response.data;
         });
     }
 }
-exports.default = new ResendService();
-//# sourceMappingURL=resend.service.js.map
+exports.default = new EmailTemplateService();
+//# sourceMappingURL=email-template.service.js.map

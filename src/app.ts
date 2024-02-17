@@ -11,10 +11,8 @@ import debug from 'debug'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 
-import { AlbumRoutes } from '@/modules/albums/albums.routes.config'
-import { ArtistRoutes } from '@/modules/artist/artist.routes.config'
-import { AuthRoutes } from '@/modules/auth/auth.routes.config'
-import { UsersRoutes } from '@/modules/users/users.routes.config'
+import emailTemplateService from './common/services/email-template.service'
+import resendService from './common/services/resend.service'
 
 const app: express.Application = express()
 const server: http.Server = http.createServer(app)
@@ -47,18 +45,26 @@ app.use(expressWinston.logger(loggetOptions))
 app.use(helmet())
 
 // Routes
-routes.push(new UsersRoutes(app))
-routes.push(new AuthRoutes(app));
+// routes.push(new UsersRoutes(app))
+// routes.push(new AuthRoutes(app));
 
 // Surcoteca-API
-routes.push(new ArtistRoutes(app))
-routes.push(new AlbumRoutes(app))
+//routes.push(new ArtistRoutes(app))
+//routes.push(new AlbumRoutes(app))
 
 // End Routes
 
 const runningMessage = `Server running at http://localhost:${port}`
 app.get('/', async (req: express.Request, res: express.Response) => {
-    res.status(200).send(runningMessage)
+    const template = await emailTemplateService.getTemplate('welcome.html')
+    const responseResend = resendService.sendEmail({
+        to: 'perezmjosem@gmail.com',
+        subject: 'Bienvenido a Surcoteca',
+        html: template,
+        from: 'test@surcoteca.cl'
+    })
+
+    res.status(200).send(JSON.stringify(responseResend))
 })
 
 server.listen(port, () => {
