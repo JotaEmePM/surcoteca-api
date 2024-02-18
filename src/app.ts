@@ -63,7 +63,8 @@ app.get('/', async (req: express.Request, res: express.Response) => {
         html: template,
         from: 'test@surcoteca.cl'
     })
-
+    debugLog(`template: ${template}`)
+    debugLog(`responseResend: ${responseResend}`)
     res.status(200).send(JSON.stringify(template && responseResend))
 })
 

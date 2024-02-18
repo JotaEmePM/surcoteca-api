@@ -81,6 +81,8 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         html: template,
         from: 'test@surcoteca.cl'
     });
+    debugLog(`template: ${template}`);
+    debugLog(`responseResend: ${responseResend}`);
     res.status(200).send(JSON.stringify(template && responseResend));
 }));
 server.listen(port, () => {
