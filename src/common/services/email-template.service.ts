@@ -12,7 +12,7 @@ class EmailTemplateService {
         //     throw new Error('EMAIL_TEMPLATE_URL is not set in .env file')
         // }
         // this.email_template_url = process.env.EMAIL_TEMPLATE_URL;
-        this.email_template_url = 'https://surcoteca-1vkbcdmyc-jotaemepms-projects.vercel.app/emails/'
+        this.email_template_url = 'https://surcoteca-web.vercel.app/emails/'
     }
 
     public async getTemplate(templateName: string) {
