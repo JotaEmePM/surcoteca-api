@@ -64,7 +64,7 @@ app.get('/', async (req: express.Request, res: express.Response) => {
         from: 'test@surcoteca.cl'
     })
 
-    res.status(200).send(JSON.stringify(responseResend))
+    res.status(200).send(JSON.stringify(template && responseResend))
 })
 
 server.listen(port, () => {

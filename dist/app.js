@@ -81,7 +81,7 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         html: template,
         from: 'test@surcoteca.cl'
     });
-    res.status(200).send(JSON.stringify(responseResend));
+    res.status(200).send(JSON.stringify(template && responseResend));
 }));
 server.listen(port, () => {
     routes.forEach((route) => {
