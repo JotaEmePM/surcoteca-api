@@ -26,7 +26,7 @@ class UsersController {
             res.status(403).send({ error: 'User already exists' });
         } else {
             const welcomeTemplate = await emailTemplateService.getTemplate('welcome')
-            const responseResend = resendService.sendEmail({
+            const responseResend = await resendService.sendEmail({
                 to: req.body.email,
                 subject: 'Bienvenido a Surcoteca',
                 html: welcomeTemplate,

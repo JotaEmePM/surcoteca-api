@@ -40,7 +40,7 @@ class UsersController {
             }
             else {
                 const welcomeTemplate = yield email_template_service_1.default.getTemplate('welcome');
-                const responseResend = resend_service_1.default.sendEmail({
+                const responseResend = yield resend_service_1.default.sendEmail({
                     to: req.body.email,
                     subject: 'Bienvenido a Surcoteca',
                     html: welcomeTemplate,
