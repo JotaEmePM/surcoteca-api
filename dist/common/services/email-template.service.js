@@ -18,17 +18,16 @@ const log = (0, debug_1.default)('app:email-template-service');
 class EmailTemplateService {
     constructor() {
         this.email_template_url = '';
-        // if (!process.env.EMAIL_TEMPLATE_URL) {
-        //     log('EMAIL_TEMPLATE_URL is not set in .env file')
-        //     throw new Error('EMAIL_TEMPLATE_URL is not set in .env file')
-        // }
-        // this.email_template_url = process.env.EMAIL_TEMPLATE_URL;
+        if (!process.env.EMAIL_TEMPLATE_URL) {
+            log('EMAIL_TEMPLATE_URL is not set in .env file');
+            throw new Error('EMAIL_TEMPLATE_URL is not set in .env file');
+        }
+        this.email_template_url = process.env.EMAIL_TEMPLATE_URL;
         this.email_template_url = 'https://surcoteca-web.vercel.app/emails/';
     }
     getTemplate(templateName) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield axios_1.default.get(`${this.email_template_url}${templateName}`);
-            log(response.data);
             return response.data;
         });
     }

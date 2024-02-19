@@ -105,6 +105,8 @@ class UsersMiddleware {
         res: express.Response,
         next: express.NextFunction
     ) {
+        log('Sending welcome email to id:', res.locals.user);
+        log('Sending welcome email to id:', res.locals.id);
         log('Sending welcome email to:', req.body.email);
         next();
     }

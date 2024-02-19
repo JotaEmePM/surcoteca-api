@@ -34,8 +34,7 @@ export class UsersRoutes extends CommonRoutesConfig {
                     .withMessage('Must include password (5+ characters)'),
                 BodyValidationMiddleware.verifyBodyFieldsErrors,
                 UsersMiddleware.validateSameEmailDoesntExist,
-                UsersController.createUser,
-                UsersMiddleware.sendWelcomeEmail
+                UsersController.createUser
             );
 
         this.app.param(`userId`, UsersMiddleware.extractUserId);

@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const argon2_1 = __importDefault(require("argon2"));
 const debug_1 = __importDefault(require("debug"));
+const email_template_service_1 = __importDefault(require("../../../common/services/email-template.service"));
+const resend_service_1 = __importDefault(require("../../../common/services/resend.service"));
 const users_service_1 = __importDefault(require("../services/users.service"));
 const log = (0, debug_1.default)('app:users-controller');
 class UsersController {
@@ -33,9 +35,19 @@ class UsersController {
         return __awaiter(this, void 0, void 0, function* () {
             req.body.password = yield argon2_1.default.hash(req.body.password);
             const userId = yield users_service_1.default.create(req.body);
-            if (userId !== null) {
+            if (userId === 'error') {
+                res.status(403).send({ error: 'User already exists' });
             }
-            res.status(201).send({ id: userId });
+            else {
+                const welcomeTemplate = yield email_template_service_1.default.getTemplate('welcome');
+                const responseResend = resend_service_1.default.sendEmail({
+                    to: req.body.email,
+                    subject: 'Bienvenido a Surcoteca',
+                    html: welcomeTemplate,
+                    from: 'no-reply@jotaemepm.dev'
+                });
+                res.status(201).send({ id: userId, resend: responseResend });
+            }
         });
     }
     patch(req, res) {

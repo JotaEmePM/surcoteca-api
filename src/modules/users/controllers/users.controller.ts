@@ -1,6 +1,8 @@
 import argon2 from 'argon2';
 import debug from 'debug';
 import express from 'express';
+import emailTemplateService from '../../../common/services/email-template.service';
+import resendService from '../../../common/services/resend.service';
 import { PatchUserDto } from '../dto/patch.user.dto';
 import usersService from '../services/users.service';
 
@@ -20,11 +22,18 @@ class UsersController {
         req.body.password = await argon2.hash(req.body.password);
         const userId = await usersService.create(req.body);
 
-        if (userId !== null) {
-            
+        if (userId === 'error') {
+            res.status(403).send({ error: 'User already exists' });
+        } else {
+            const welcomeTemplate = await emailTemplateService.getTemplate('welcome')
+            const responseResend = resendService.sendEmail({
+                to: req.body.email,
+                subject: 'Bienvenido a Surcoteca',
+                html: welcomeTemplate,
+                from: 'no-reply@jotaemepm.dev'
+            })
+            res.status(201).send({ id: userId, resend: responseResend });
         }
-
-        res.status(201).send({ id: userId });
     }
 
     async patch(req: express.Request, res: express.Response) {

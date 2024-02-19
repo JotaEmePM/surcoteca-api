@@ -96,6 +96,8 @@ class UsersMiddleware {
     }
     sendWelcomeEmail(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
+            log('Sending welcome email to id:', res.locals.user);
+            log('Sending welcome email to id:', res.locals.id);
             log('Sending welcome email to:', req.body.email);
             next();
         });

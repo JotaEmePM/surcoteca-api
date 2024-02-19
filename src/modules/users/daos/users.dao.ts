@@ -75,6 +75,7 @@ class UsersDao {
             permissionFlags: PermissionFlag.FREE_PERMISSION,
         });
         await user.save();
+        log(`addUser-> ${userId}`)
         return userId;
     }
 

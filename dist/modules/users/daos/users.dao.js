@@ -79,6 +79,7 @@ class UsersDao {
                 permissionFlags: common_permissionflag_enum_1.PermissionFlag.FREE_PERMISSION,
             });
             yield user.save();
+            log(`addUser-> ${userId}`);
             return userId;
         });
     }
