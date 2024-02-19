@@ -1,4 +1,4 @@
-import { CRUD } from "@/common/interfaces/crud.interface";
+import { CRUD } from "../../../common/interfaces/crud.interface";
 import emailDao from "../daos/email.dao";
 
 class EmailLogService implements CRUD {

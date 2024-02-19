@@ -1,5 +1,5 @@
-import { PermissionFlag } from '@/common/middleware/common.permissionflag.enum';
-import mongooseService from '@/common/services/mongoose.service';
+import { PermissionFlag } from '../../../common/middleware/common.permissionflag.enum';
+import mongooseService from '../../../common/services/mongoose.service';
 
 import { CreateUserDto } from '../dto/create.user.dto';
 import { PatchUserDto } from '../dto/patch.user.dto';
@@ -20,8 +20,8 @@ class UsersDao {
     // email: String,
     // password: { type: String, select: false },
     userSchema = new this.Schema({
-        _id: String,        
-        username: String,        
+        _id: String,
+        username: String,
         email: [
             {
                 id: String,
@@ -71,7 +71,7 @@ class UsersDao {
                     created: new Date(),
                     endDate: null
                 }
-            ],            
+            ],
             permissionFlags: PermissionFlag.FREE_PERMISSION,
         });
         await user.save();
@@ -79,17 +79,17 @@ class UsersDao {
     }
 
     async getUserByEmail(email: string) {
-        try{
+        try {
             return this.User.findOne({ "email.email": email }).exec();
-        } catch(e){
+        } catch (e) {
             log(`error-> ${e}`)
         }
     }
-    
+
     async getUserById(userId: string) {
         return this.User.findOne({ _id: userId }).populate('User').exec();
     }
-    
+
     async getUsers(limit = 25, page = 0) {
         return this.User.find()
             .limit(limit)
@@ -106,7 +106,7 @@ class UsersDao {
             { $set: userFields },
             { new: true }
         ).exec();
-    
+
         return existingUser;
     }
 

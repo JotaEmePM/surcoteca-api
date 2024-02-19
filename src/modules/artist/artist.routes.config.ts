@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CommonRoutesConfig } from "@/common/common.routes.config";
-import permissionMiddleware from '@/common/middleware/common.permission.middleware';
-import { PermissionFlag } from "@/common/middleware/common.permissionflag.enum";
+import { CommonRoutesConfig } from "../../common/common.routes.config";
+import permissionMiddleware from '../../common/middleware/common.permission.middleware';
+import { PermissionFlag } from "../../common/middleware/common.permissionflag.enum";
 import jwtMiddleware from "../auth/middleware/jwt.middleware";
 import artistsController from "./controllers/artists.controller";
 
@@ -19,9 +19,9 @@ export class ArtistRoutes extends CommonRoutesConfig {
                 jwtMiddleware.validJWTNeeded,
                 permissionMiddleware.permissionFlagRequired(
                     PermissionFlag.ADMIN_PERMISSION
-                ),      
+                ),
                 // TODO: Validation
-                artistsController.createArtist          
+                artistsController.createArtist
             );
 
 

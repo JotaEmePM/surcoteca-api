@@ -1,5 +1,5 @@
-import { CommonRoutesConfig } from "@/common/common.routes.config";
 import express from 'express';
+import { CommonRoutesConfig } from "../../common/common.routes.config";
 
 export class EmailRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
@@ -7,7 +7,7 @@ export class EmailRoutes extends CommonRoutesConfig {
     }
 
     configureRoutes(): express.Application {
-        this.app.get(`/email`, [            
+        this.app.get(`/email`, [
             // TODO: add getOperation
         ]);
         return this.app;

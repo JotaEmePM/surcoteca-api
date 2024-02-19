@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArtistRoutes = void 0;
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const common_routes_config_1 = require("@/common/common.routes.config");
-const common_permission_middleware_1 = __importDefault(require("@/common/middleware/common.permission.middleware"));
-const common_permissionflag_enum_1 = require("@/common/middleware/common.permissionflag.enum");
+const common_routes_config_1 = require("../../common/common.routes.config");
+const common_permission_middleware_1 = __importDefault(require("../../common/middleware/common.permission.middleware"));
+const common_permissionflag_enum_1 = require("../../common/middleware/common.permissionflag.enum");
 const jwt_middleware_1 = __importDefault(require("../auth/middleware/jwt.middleware"));
 const artists_controller_1 = __importDefault(require("./controllers/artists.controller"));
 class ArtistRoutes extends common_routes_config_1.CommonRoutesConfig {

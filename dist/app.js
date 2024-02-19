@@ -43,8 +43,10 @@ const winston = __importStar(require("winston"));
 const debug_1 = __importDefault(require("debug"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const helmet_1 = __importDefault(require("helmet"));
-const email_template_service_1 = __importDefault(require("./common/services/email-template.service"));
-const resend_service_1 = __importDefault(require("./common/services/resend.service"));
+const albums_routes_config_1 = require("./modules/albums/albums.routes.config");
+const artist_routes_config_1 = require("./modules/artist/artist.routes.config");
+const auth_routes_config_1 = require("./modules/auth/auth.routes.config");
+const users_routes_config_1 = require("./modules/users/users.routes.config");
 const app = (0, express_1.default)();
 const server = http.createServer(app);
 const port = 3001;
@@ -66,24 +68,25 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggetOptions));
 app.use((0, helmet_1.default)());
 // Routes
-// routes.push(new UsersRoutes(app))
-// routes.push(new AuthRoutes(app));
+routes.push(new users_routes_config_1.UsersRoutes(app));
+routes.push(new auth_routes_config_1.AuthRoutes(app));
 // Surcoteca-API
-//routes.push(new ArtistRoutes(app))
-//routes.push(new AlbumRoutes(app))
+routes.push(new artist_routes_config_1.ArtistRoutes(app));
+routes.push(new albums_routes_config_1.AlbumRoutes(app));
 // End Routes
 const runningMessage = `Server running at http://localhost:${port}`;
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const template = yield email_template_service_1.default.getTemplate('welcome');
-    const responseResend = resend_service_1.default.sendEmail({
-        to: 'perezmjosem@gmail.com',
-        subject: 'Bienvenido a Surcoteca',
-        html: template,
-        from: 'test@surcoteca.cl'
-    });
-    debugLog(`template: ${template}`);
-    debugLog(`responseResend: ${responseResend}`);
-    res.status(200).send(JSON.stringify(template && responseResend));
+    res.status(200).send(runningMessage);
+    // const template = await emailTemplateService.getTemplate('welcome')
+    // const responseResend = resendService.sendEmail({
+    //     to: 'perezmjosem@gmail.com',
+    //     subject: 'Bienvenido a Surcoteca',
+    //     html: template,
+    //     from: 'test@jotaemepm.dev'
+    // })
+    // debugLog(`template: ${template}`)
+    // debugLog(`responseResend: ${responseResend}`)
+    // res.status(200).send(JSON.stringify(template && responseResend))
 }));
 server.listen(port, () => {
     routes.forEach((route) => {

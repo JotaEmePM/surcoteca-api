@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AlbumRoutes = void 0;
-const common_routes_config_1 = require("@/common/common.routes.config");
-const common_permission_middleware_1 = __importDefault(require("@/common/middleware/common.permission.middleware"));
-const common_permissionflag_enum_1 = require("@/common/middleware/common.permissionflag.enum");
+const common_permission_middleware_1 = __importDefault(require("../../common/middleware/common.permission.middleware"));
+const common_permissionflag_enum_1 = require("../../common/middleware/common.permissionflag.enum");
+const common_routes_config_1 = require("../../common/common.routes.config");
 const jwt_middleware_1 = __importDefault(require("../auth/middleware/jwt.middleware"));
 const albums_controller_1 = __importDefault(require("./controllers/albums.controller"));
 class AlbumRoutes extends common_routes_config_1.CommonRoutesConfig {

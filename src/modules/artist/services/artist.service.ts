@@ -1,9 +1,9 @@
-import { CRUD } from "@/common/interfaces/crud.interface";
+import { CRUD } from "../../../common/interfaces/crud.interface";
 import artistsDao from "../daos/artists.dao";
 import { CreateArtistDto } from "../dto/create.artist.dto";
 
 class ArtistService implements CRUD {
-        
+
     async create(resource: CreateArtistDto) {
         return artistsDao.addArtist(resource)
     }
@@ -11,7 +11,7 @@ class ArtistService implements CRUD {
     async list(limit: number, page: number) {
         return artistsDao.getArtists(limit, page);
     }
-    
+
     async putById(id: string, resource: any): Promise<any> {
         return artistsDao.updateArtistById(id, resource);
     }

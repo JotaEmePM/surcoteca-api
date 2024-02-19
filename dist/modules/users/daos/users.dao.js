@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const common_permissionflag_enum_1 = require("@/common/middleware/common.permissionflag.enum");
-const mongoose_service_1 = __importDefault(require("@/common/services/mongoose.service"));
+const common_permissionflag_enum_1 = require("../../../common/middleware/common.permissionflag.enum");
+const mongoose_service_1 = __importDefault(require("../../../common/services/mongoose.service"));
 const cuid2_1 = require("@paralleldrive/cuid2");
 const debug_1 = __importDefault(require("debug"));
 const log = (0, debug_1.default)('app:users-dao');

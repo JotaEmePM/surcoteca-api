@@ -1,6 +1,8 @@
-import { CommonRoutesConfig } from "@/common/common.routes.config";
-import permissionMiddleware from '@/common/middleware/common.permission.middleware';
-import { PermissionFlag } from "@/common/middleware/common.permissionflag.enum";
+
+import permissionMiddleware from '../../common/middleware/common.permission.middleware';
+import { PermissionFlag } from "../../common/middleware/common.permissionflag.enum";
+
+import { CommonRoutesConfig } from '../../common/common.routes.config';
 import jwtMiddleware from "../auth/middleware/jwt.middleware";
 import albumsController from "./controllers/albums.controller";
 
@@ -20,7 +22,7 @@ export class AlbumRoutes extends CommonRoutesConfig {
                     PermissionFlag.ADMIN_PERMISSION
                 ),
                 albumsController.createAlbum
-            );       
+            );
 
         return this.app;
     }

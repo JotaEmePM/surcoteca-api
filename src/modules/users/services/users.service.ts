@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CRUD } from '@/common/interfaces/crud.interface'
+import { CRUD } from '../../../common/interfaces/crud.interface'
 import UsersDao from "../daos/users.dao"
 
 import { CreateUserDto } from '../dto/create.user.dto'

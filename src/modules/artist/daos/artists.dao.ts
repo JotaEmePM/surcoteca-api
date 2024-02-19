@@ -1,5 +1,5 @@
-import mongooseService from "@/common/services/mongoose.service";
 import debug from "debug";
+import mongooseService from "../../../common/services/mongoose.service";
 import { CreateArtistDto } from "../dto/create.artist.dto";
 
 import { createId } from '@paralleldrive/cuid2';
@@ -58,7 +58,7 @@ class ArtistsDao {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async updateArtistById(artistId: string, resource: any) {
         return this.Artist.findOneAndUpdate(
-            { _id: artistId }, 
+            { _id: artistId },
             { $set: resource },
             { new: true }
         ).exec();

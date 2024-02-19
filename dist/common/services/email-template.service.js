@@ -28,6 +28,7 @@ class EmailTemplateService {
     getTemplate(templateName) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield axios_1.default.get(`${this.email_template_url}${templateName}`);
+            log(response.data);
             return response.data;
         });
     }

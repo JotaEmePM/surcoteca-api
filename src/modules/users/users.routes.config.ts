@@ -1,12 +1,12 @@
-import { CommonRoutesConfig } from '@/common/common.routes.config';
-import BodyValidationMiddleware from '@/common/middleware/body.validation.middleware';
 import express from 'express';
 import { body } from 'express-validator';
 import UsersController from './controllers/users.controller';
 import UsersMiddleware from './middleware/users.middleware';
 
-import permissionMiddleware from '@/common/middleware/common.permission.middleware';
-import { PermissionFlag } from '@/common/middleware/common.permissionflag.enum';
+import { CommonRoutesConfig } from '../../common/common.routes.config';
+import BodyValidationMiddleware from '../../common/middleware/body.validation.middleware';
+import permissionMiddleware from '../../common/middleware/common.permission.middleware';
+import { PermissionFlag } from '../../common/middleware/common.permissionflag.enum';
 import jwtMiddleware from '../auth/middleware/jwt.middleware';
 
 
@@ -25,6 +25,8 @@ export class UsersRoutes extends CommonRoutesConfig {
                 ),
                 UsersController.listUsers
             )
+        this.app
+            .route(`/users`)
             .post(
                 body('email').isEmail(),
                 body('password')

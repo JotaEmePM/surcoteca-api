@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthRoutes = void 0;
-const common_routes_config_1 = require("@/common/common.routes.config");
-const body_validation_middleware_1 = __importDefault(require("@/common/middleware/body.validation.middleware"));
 const express_validator_1 = require("express-validator");
+const common_routes_config_1 = require("../../common/common.routes.config");
+const body_validation_middleware_1 = __importDefault(require("../../common/middleware/body.validation.middleware"));
 const auth_controller_1 = __importDefault(require("./controllers/auth.controller"));
 const auth_middleware_1 = __importDefault(require("./middleware/auth.middleware"));
 const jwt_middleware_1 = __importDefault(require("./middleware/jwt.middleware"));

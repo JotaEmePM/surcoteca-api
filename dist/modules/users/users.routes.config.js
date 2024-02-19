@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersRoutes = void 0;
-const common_routes_config_1 = require("@/common/common.routes.config");
-const body_validation_middleware_1 = __importDefault(require("@/common/middleware/body.validation.middleware"));
 const express_validator_1 = require("express-validator");
 const users_controller_1 = __importDefault(require("./controllers/users.controller"));
 const users_middleware_1 = __importDefault(require("./middleware/users.middleware"));
-const common_permission_middleware_1 = __importDefault(require("@/common/middleware/common.permission.middleware"));
-const common_permissionflag_enum_1 = require("@/common/middleware/common.permissionflag.enum");
+const common_routes_config_1 = require("../../common/common.routes.config");
+const body_validation_middleware_1 = __importDefault(require("../../common/middleware/body.validation.middleware"));
+const common_permission_middleware_1 = __importDefault(require("../../common/middleware/common.permission.middleware"));
+const common_permissionflag_enum_1 = require("../../common/middleware/common.permissionflag.enum");
 const jwt_middleware_1 = __importDefault(require("../auth/middleware/jwt.middleware"));
 class UsersRoutes extends common_routes_config_1.CommonRoutesConfig {
     constructor(app) {
@@ -19,7 +19,9 @@ class UsersRoutes extends common_routes_config_1.CommonRoutesConfig {
     configureRoutes() {
         this.app
             .route(`/users`)
-            .get(jwt_middleware_1.default.validJWTNeeded, common_permission_middleware_1.default.permissionFlagRequired(common_permissionflag_enum_1.PermissionFlag.ADMIN_PERMISSION), users_controller_1.default.listUsers)
+            .get(jwt_middleware_1.default.validJWTNeeded, common_permission_middleware_1.default.permissionFlagRequired(common_permissionflag_enum_1.PermissionFlag.ADMIN_PERMISSION), users_controller_1.default.listUsers);
+        this.app
+            .route(`/users`)
             .post((0, express_validator_1.body)('email').isEmail(), (0, express_validator_1.body)('password')
             .isLength({ min: 5 })
             .withMessage('Must include password (5+ characters)'), body_validation_middleware_1.default.verifyBodyFieldsErrors, users_middleware_1.default.validateSameEmailDoesntExist, users_controller_1.default.createUser, users_middleware_1.default.sendWelcomeEmail);

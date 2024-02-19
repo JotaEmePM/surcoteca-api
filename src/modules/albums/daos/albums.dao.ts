@@ -1,6 +1,6 @@
-import mongooseService from "@/common/services/mongoose.service"
 import { createId } from "@paralleldrive/cuid2"
 import debug from "debug"
+import mongooseService from "../../../common/services/mongoose.service"
 
 
 const log: debug.IDebugger = debug('app:albums-dao')
